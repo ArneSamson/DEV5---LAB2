@@ -5,30 +5,33 @@ export default class World {
       this.hookEvents(); // let's kick things of by hooking up events
     }
   
-    hookEvents() {
-      // hook events like clicking buttons to a specific function
-    }
-  
     save() {
-      // save islands to localstorage
       localStorage.setItem("islands", JSON.stringify(this.islands));
     }
   
     load() {
-      // load islands from localstorage into array
-      const savedIslands = JSON.parse(localStorage.getItem("islands")) || [];
-        savedIslands.forEach(islandData => {
-            const island = new Island();
-            island.name = islandData.name;
-            island.color = islandData.color;
-            island.position = islandData.position;
-            this.addIsland(island);
-        });
+      const islands = JSON.parse(localStorage.getItem("islands"));
+
+      islands.forEach(island => {
+        const oldIsland = new Island();
+        oldIsland.name = island.name;
+        oldIsland.color = island.color;
+        
+        this.addIsland(oldIsland);
+        oldIsland.element.style.left = island.x;
+        oldIsland.element.style.top = island.y;
+
+        island.element.style.position = "absolute";
+        and.element.style.left = `${island.x}px`;
+        island.element.style.top = `${island.y}px`; 
+
+        this.addIsland(island);
+
+      });
     }
   
     getCoordinates() {
-      const offset = 0.7;
-      // return coordinates within the screen at random, feel free to change it up!
+      const offset = 0.9;
       const x = Math.floor(Math.random() * window.innerWidth * offset);
       const y = Math.floor(Math.random() * window.innerHeight * offset);
       return { x, y };
@@ -40,12 +43,14 @@ export default class World {
     }
   
     moveIsland(island) {
-      // get random coordinates
       const coordinates = this.getCoordinates();
-      // set the coordinates to the island
-      island.element.style.left = `${coordinates.x}px`;
-      island.element.style.top = `${coordinates.y}px`;
 
+      island.x = coordinates.x;
+      island.y = coordinates.y;
+      
+      island.element.style.left = `${island.x}px`;
+      island.element.style.top = `${island.y}px`;
     }
+
   }
   
