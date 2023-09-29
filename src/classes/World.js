@@ -4,30 +4,52 @@ export default class World {
       this.islands = []; // a good place to keep track of your islands
       this.hookEvents(); // let's kick things of by hooking up events
     }
+
+    hookEvents() {
+    }
   
     save() {
       localStorage.setItem("islands", JSON.stringify(this.islands));
     }
   
     load() {
-      const islands = JSON.parse(localStorage.getItem("islands"));
-
-      islands.forEach(island => {
-        const oldIsland = new Island();
-        oldIsland.name = island.name;
-        oldIsland.color = island.color;
+      const savedIslands = JSON.parse(localStorage.getItem("islands"));
+    
+      if (savedIslands) {
+        // Clear existing islands from the DOM
+        this.islands.forEach(island => {
+          island.element.remove();
+        });
         
-        this.addIsland(oldIsland);
-        oldIsland.element.style.left = island.x;
-        oldIsland.element.style.top = island.y;
+        // Clear existing islands from the World
+        this.islands = [];
+    
+        savedIslands.forEach(savedIslandData => {
+          const island = new Island();
+          island.name = savedIslandData.name;
+          island.color = savedIslandData.color;
+    
+          // Create island element directly within the load function
+          const islandElement = document.createElement("div");
+          islandElement.classList.add("island");
+          islandElement.style.backgroundColor = island.color;
+          islandElement.style.transform = `translate(-50%, -50%)`;
+          islandElement.innerHTML = `<h2>${island.name}</h2>`;
+    
+          // Set the position of the island element
+          islandElement.style.left = `${savedIslandData.x}px`;
+          islandElement.style.top = `${savedIslandData.y}px`;
+    
+          // Assign the element to the island
+          island.element = islandElement;
 
-        island.element.style.position = "absolute";
-        and.element.style.left = `${island.x}px`;
-        island.element.style.top = `${island.y}px`; 
+          // Add the island to the World
+          this.islands.push(island); // Push the island into the array
 
-        this.addIsland(island);
-
-      });
+          // Append the island element to the DOM
+          document.body.appendChild(islandElement);
+        });
+      }
     }
   
     getCoordinates() {
@@ -45,11 +67,8 @@ export default class World {
     moveIsland(island) {
       const coordinates = this.getCoordinates();
 
-      island.x = coordinates.x;
-      island.y = coordinates.y;
-      
-      island.element.style.left = `${island.x}px`;
-      island.element.style.top = `${island.y}px`;
+      island.element.style.left = `${coordinates.x}px`;
+      island.element.style.top = `${coordinates.y}px`;
     }
 
   }
