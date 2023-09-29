@@ -3,7 +3,7 @@ export default class Island {
       this.name = this.getRandomName();
       this.color = this.getRandomColor();
       this.element = this.createElement();
-      this.render();
+      // this.render();
     }
   
     getRandomColor() {
@@ -11,17 +11,20 @@ export default class Island {
     }
 
     createElement() {
-        const island = document.createElement("div");
-        island.classList.add("island");
-        island.style.backgroundColor = this.color;
-        island.style.transform = `translate(-50%, -50%)`;
-        island.innerHTML = `<h2>${this.name}</h2>`;
-        return island;
+      const island = document.createElement("div");
+      island.classList.add("island");
+      island.style.backgroundColor = this.color;
+      island.style.transform = `translate(-50%, -50%)`;
+      island.innerHTML = `<h2>${this.name}</h2>`;
+    
+      document.body.appendChild(island);
+    
+      return island;
     }
 
-    render() {
-        document.body.appendChild(this.element);
-    }
+    // render() {
+    //     document.body.appendChild(this.element);
+    // }
 
   
     remove() {
@@ -34,7 +37,6 @@ export default class Island {
     }
   
     getRandomName() {
-      // array with 10 random island names
       const names = [
         "Palmtree beach",
         "Sandy beach",
@@ -47,8 +49,7 @@ export default class Island {
         "Palm island",
         "Paradise island"
       ];
-  
-      //return a random name from the array
+
       return names[Math.floor(Math.random() * names.length)];      
     }
   }
