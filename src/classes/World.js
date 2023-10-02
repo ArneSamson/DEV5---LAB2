@@ -4,6 +4,20 @@ export default class World {
       this.islands = []; // a good place to keep track of your islands
       this.hookEvents(); // let's kick things of by hooking up events
     }
+
+    hookEvents() {
+      document.querySelector("#btnAddIsland").addEventListener("click", () => {
+        this.addIsland(new Island());
+      });
+  
+      document.querySelector("#btnSave").addEventListener("click", () => {
+        this.save();
+      });
+  
+      document.querySelector("#btnLoad").addEventListener("click", () => {
+        this.load();
+      });
+    }
   
     save() {
       localStorage.setItem("islands", JSON.stringify(this.islands));
@@ -21,9 +35,9 @@ export default class World {
         oldIsland.element.style.left = island.x;
         oldIsland.element.style.top = island.y;
 
-        island.element.style.position = "absolute";
-        and.element.style.left = `${island.x}px`;
-        island.element.style.top = `${island.y}px`; 
+        // island.element.style.position = "absolute";
+        // and.element.style.left = `${island.x}px`;
+        // island.element.style.top = `${island.y}px`; 
 
         this.addIsland(island);
 
