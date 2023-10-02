@@ -40,6 +40,8 @@ export default class World {
           const islandElement = document.createElement("div");
           islandElement.classList.add("island");
           islandElement.style.backgroundColor = island.color;
+          islandElement.style.backgroundImage = `url(../../public/${island.name}.webp)`;
+
           
           islandElement.textContent = island.name;
 
