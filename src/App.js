@@ -1,12 +1,29 @@
-import "../style.css";
 import Island from "./classes/Island";
 import World from "./classes/World";
 
-
 const world = new World();
 
-document.getElementById("btnAddIsland").addEventListener("click", () => {
-    const island = new Island();
+document.querySelector("#btnAddIsland").addEventListener("click", () => {
     world.addIsland(new Island());
-    }
-);
+    });
+
+// export default class App {
+//     constructor() {
+//         this.world = new World();
+//         this.hookEvents();
+//     }
+    
+//     hookEvents() {
+//         document.querySelector("#btnAddIsland").addEventListener("click", () => {
+//         this.world.addIsland(new Island());
+//         });
+    
+//         document.querySelector("#btnSave").addEventListener("click", () => {
+//         this.world.save();
+//         });
+    
+//         document.querySelector("#btnLoad").addEventListener("click", () => {
+//         this.world.load();
+//         });
+//     }
+// }
