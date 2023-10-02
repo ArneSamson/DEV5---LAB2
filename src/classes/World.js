@@ -2,7 +2,7 @@ import Island from "./Island.js";
 export default class World {
     constructor() {
       this.islands = []; // a good place to keep track of your islands
-      // this.hookEvents(); // let's kick things of by hooking up events
+      this.hookEvents(); // let's kick things of by hooking up events
     }
 
     hookEvents() {    
@@ -21,8 +21,6 @@ export default class World {
   
     load() {
       const savedIslands = JSON.parse(localStorage.getItem("islands"));
-
-      console.log(savedIslands);
     
       if (savedIslands) {
         // Clear existing islands from the DOM
@@ -53,7 +51,7 @@ export default class World {
           island.element = islandElement;
 
           // Add the island to the World
-          this.islands.push(island);
+          this.islands.push(island); // Push the island into the array
 
           // Append the island element to the DOM
           document.body.appendChild(islandElement);
@@ -87,6 +85,6 @@ export default class World {
       // island.element.style.left = `${coordinates.x}px`;
       // island.element.style.top = `${coordinates.y}px`;
     }
-    
+
   }
   
