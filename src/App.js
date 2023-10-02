@@ -9,7 +9,7 @@ export default class App {
     
     hookEvents() {
         document.querySelector("#btnAddIsland").addEventListener("click", () => {
-        this.world.addIsland(new Island());
+        this.world.addIsland();
         });
     
         document.querySelector("#btnSave").addEventListener("click", () => {

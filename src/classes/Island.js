@@ -1,25 +1,29 @@
 export default class Island {
-    constructor() {
+    constructor(coordinates) {
       this.name = this.getRandomName();
       this.color = this.getRandomColor();
-      this.element = this.createElement();
-      // this.render();
+      this.element = this.render();
+      this.coordinates = coordinates || { x: 0, y: 0 };
     }
   
     getRandomColor() {
       return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     }
 
-    createElement() {
-      const island = document.createElement("div");
-      island.classList.add("island");
-      island.style.backgroundColor = this.color;
-      island.style.transform = `translate(-50%, -50%)`;
-      island.innerHTML = `<h2>${this.name}</h2>`;
+    render() {
+      const islandElement = document.createElement("div");
+      islandElement.classList.add("island");
+      islandElement.style.backgroundColor = this.color;
+
+      console.log(this.coordinates);
+
+      islandElement.style.left = `${this.coordinates.x}px`;
+      islandElement.style.top = `${this.coordinates.y}px`;
+      islandElement.innerHTML = `<h2>${this.name}</h2>`;
+
+      this.element = islandElement;
     
-      document.body.appendChild(island);
-    
-      return island;
+      document.body.appendChild(islandElement);
     }
 
     // render() {
