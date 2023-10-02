@@ -38,16 +38,16 @@ export default class Island {
 
   getRandomName() {
     const names = [
-      "Palmtree beach",
-      "Sandy beach",
-      "Tropical beach",
-      "Palm beach",
-      "Sunny beach",
-      "Paradise beach",
-      "Sunny island",
-      "Tropical island",
-      "Palm island",
-      "Paradise island"
+      "Diablos",
+      "Forokururu",
+      "Chameleos",
+      "Qurupeco",
+      "Mohran", 
+      "Jaggi",
+      "Kushala Daora",
+      "Teostra",
+      "Urugaan",
+      "Zamtrios"
     ];
 
     return names[Math.floor(Math.random() * names.length)];      
