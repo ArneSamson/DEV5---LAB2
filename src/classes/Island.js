@@ -15,6 +15,8 @@ export default class Island {
     const island = document.createElement("div");
     island.classList.add("island");
     island.style.backgroundColor = this.color;
+    island.style.backgroundImage = `url(../../public/${this.name}.webp)`
+
     
     island.textContent = this.name;
     
@@ -44,9 +46,9 @@ export default class Island {
       "Qurupeco",
       "Mohran", 
       "Jaggi",
-      "Kushala Daora",
+      "Kushala",
       "Teostra",
-      "Urugaan",
+      "Uragaan",
       "Zamtrios"
     ];
 
