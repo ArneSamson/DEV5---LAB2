@@ -1,5 +1,5 @@
-import Island from "./classes/Island";
-import World from "./classes/World";
+import Island from "./classes/Island.js";
+import World from "./classes/World.js";
 
 const world = new World();
 
